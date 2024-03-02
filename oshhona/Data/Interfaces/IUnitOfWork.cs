@@ -1,5 +1,4 @@
-﻿using oshhona.Data.Inrterfaces;
-
+﻿
 namespace Oshxona.Data.Inrterfaces;
 
 public interface IUnitOfWork

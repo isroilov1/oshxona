@@ -1,6 +1,4 @@
-﻿using oshhona.Data.Entities;
-using System.Data;
-
+﻿
 namespace Oshxona.Data.Entities;
 
 public class User : BaseEntity

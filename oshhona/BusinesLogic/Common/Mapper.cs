@@ -1,8 +1,4 @@
-﻿using oshhona.BusinesLogic.DTOs.CategoryDtos;
-using oshhona.BusinesLogic.DTOs.FoodDtos;
-using Oshxona.Data.Entities;
-
-namespace oshhona.BusinesLogic.Common;
+﻿namespace oshhona.BusinesLogic.Common;
 
 public static class Mapper
 {
