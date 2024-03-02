@@ -1,5 +1,5 @@
-﻿using oshhona.BusinesLogic.DTOs.FoodDtos;
-using oshhona.Data.Inrterfaces;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Oshxona.Data.Entities;
 
 namespace oshhona.Data.Repositories
@@ -7,5 +7,10 @@ namespace oshhona.Data.Repositories
     public class FoodRepository(AppDbContext dbContext)
     : Repository<Foods>(dbContext), IFoodInterface
     {
+        public List<Foods> GetFoodsWithReleations()
+        => _dbContext.Foods
+            .Include(c => c.Category)
+            .ToList();
+        
     }
 }

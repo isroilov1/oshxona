@@ -1,10 +1,11 @@
-﻿using Oshxona.Data.Entities;
-using Oshxona.Data.Inrterfaces;
+﻿using oshhona.Data.Entities;
+using oshhona.Data.Inrterfaces;
+using Oshxona.Data.Entities;
 
 namespace oshhona.Data.Repositories
 {
-    public class OrderRepositoryy(AppDbContext dbContext) :
-        Repository<Image>(dbContext), IOrderInterface
+    public class OrderRepository(AppDbContext dbContext) :
+        Repository<Order>(dbContext), IOrderInterface
     {
     }
 }

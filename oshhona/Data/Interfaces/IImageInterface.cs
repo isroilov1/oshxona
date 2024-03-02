@@ -2,7 +2,7 @@
 
 namespace Oshxona.Data.Inrterfaces;
 
-public interface IOrderInterface : IRepository<Image>
+public interface IImageInterface : IRepository<Image>
 {
 
 }
