@@ -20,7 +20,7 @@ public static class Mapper
             Name = brend.Name
         };*/
 
-    public static FoodDto ToCarDto(this Foods food)
+    public static FoodDto ToFoodDto(this Foods food)
         => new()
         {
             Id = food.Id,

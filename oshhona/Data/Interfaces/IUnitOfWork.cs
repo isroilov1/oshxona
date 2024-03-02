@@ -4,7 +4,7 @@ namespace Oshxona.Data.Inrterfaces;
 
 public interface IUnitOfWork
 {
-    IFoodInterface Cars { get; }
+    IFoodInterface Foods { get; }
     ICategoryInterface Categories { get; }
     IOrderInterface Images { get; }
     //IOrderInterface Orders { get; }
