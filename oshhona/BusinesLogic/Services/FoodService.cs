@@ -1,8 +1,4 @@
 ﻿using oshhona.BusinesLogic.Common;
-using oshhona.BusinesLogic.DTOs.FoodDtos;
-using oshhona.BusinesLogic.Interfaces;
-using Oshxona.Data.Entities;
-using Oshxona.Data.Inrterfaces;
 
 namespace oshhona.BusinesLogic.Services;
 

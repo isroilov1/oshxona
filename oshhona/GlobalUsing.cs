@@ -1,0 +1,12 @@
+﻿global using oshhona.BusinesLogic.DTOs.FoodDtos;
+global using oshhona.BusinesLogic.Interfaces;
+global using oshhona.BusinesLogic.DTOs.CategoryDtos;
+global using Oshxona.Data.Entities;
+global using Oshxona.Data.Inrterfaces;
+global using Microsoft.EntityFrameworkCore;
+global using oshhona.BusinesLogic.Services;
+global using oshhona.Data;
+global using oshhona.Data.Repositories;
+global using oshhona.Data.Entities;
+global using oshhona.Data.Inrterfaces;
+global using Microsoft.AspNetCore.Mvc;

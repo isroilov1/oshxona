@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using oshhona.Data.Entities;
-using Oshxona.Data.Entities;
+﻿
 namespace oshhona.Data;
 
 public class AppDbContext : DbContext

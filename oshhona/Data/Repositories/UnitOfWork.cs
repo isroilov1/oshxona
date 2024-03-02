@@ -1,6 +1,4 @@
-﻿using oshhona.Data.Inrterfaces;
-using Oshxona.Data.Inrterfaces;
-
+﻿
 namespace oshhona.Data.Repositories;
 
 public class UnitOfWork(AppDbContext dbContext)

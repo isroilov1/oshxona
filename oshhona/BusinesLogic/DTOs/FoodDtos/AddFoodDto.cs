@@ -1,5 +1,4 @@
-﻿using oshhona.BusinesLogic.DTOs.CategoryDtos;
-
+﻿
 namespace oshhona.BusinesLogic.DTOs.FoodDtos;
 
 public class AddFoodDto

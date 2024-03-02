@@ -1,5 +1,4 @@
-﻿using Oshxona.Data.Entities;
-
+﻿
 namespace oshhona.BusinesLogic.DTOs.CategoryDtos
 {
     public class CategoryDto

@@ -1,7 +1,4 @@
 ﻿
-using Microsoft.EntityFrameworkCore;
-using Oshxona.Data.Entities;
-
 namespace oshhona.Data.Repositories
 {
     public class FoodRepository(AppDbContext dbContext)

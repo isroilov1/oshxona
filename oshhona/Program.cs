@@ -1,11 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using oshhona.BusinesLogic.Interfaces;
-using oshhona.BusinesLogic.Services;
-using oshhona.Data;
-using oshhona.Data.Inrterfaces;
-using oshhona.Data.Repositories;
-using Oshxona.Data.Inrterfaces;
-
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();

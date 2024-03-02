@@ -1,5 +1,4 @@
-﻿using Oshxona.Data.Entities;
-
+﻿
 namespace oshhona.Data.Entities;
 
 public class Order : BaseEntity

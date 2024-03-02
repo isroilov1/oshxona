@@ -1,6 +1,4 @@
-﻿using oshhona.BusinesLogic.DTOs.FoodDtos;
-
-namespace oshhona.BusinesLogic.Interfaces;
+﻿namespace oshhona.BusinesLogic.Interfaces;
 
 public interface IFoodService
 {

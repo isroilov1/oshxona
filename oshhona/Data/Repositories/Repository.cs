@@ -1,7 +1,4 @@
-﻿using Oshxona.Data.Entities;
-using Oshxona.Data.Inrterfaces;
-using Microsoft.EntityFrameworkCore;
-
+﻿
 namespace oshhona.Data.Repositories;
 
 public class Repository<TEntity>(AppDbContext dbContext)
