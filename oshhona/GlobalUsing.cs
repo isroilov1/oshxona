@@ -10,3 +10,7 @@ global using oshhona.Data.Repositories;
 global using oshhona.Data.Entities;
 global using oshhona.Data.Inrterfaces;
 global using Microsoft.AspNetCore.Mvc;
+global using System.Security.Cryptography;
+global using System.Text;
+global using Microsoft.AspNetCore.Authorization;
+global using oshhona.BusinesLogic.Common;
