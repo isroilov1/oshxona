@@ -1,10 +1,4 @@
-﻿using oshhona.BusinesLogic.Common;
-using oshhona.BusinesLogic.DTOs.CategoryDtos;
-using oshhona.BusinesLogic.Interfaces;
-using Oshxona.Data.Entities;
-using Oshxona.Data.Inrterfaces;
-
-namespace oshhona.BusinesLogic.Services;
+﻿namespace oshhona.BusinesLogic.Services;
 
 public class CategoryService(IUnitOfWork unitOfWork,
                              IFileService fileService)

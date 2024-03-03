@@ -43,8 +43,9 @@
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a asp-controller="home" asp-action="index" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a asp-controller="categories" asp-action="index" class="nav-item nav-link"><i class="bi bi-tags-fill me-2"></i>Category</a>
+                <a asp-controller="home" asp-action="index" class="nav-item nav-link menu-item active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a asp-controller="categories" asp-action="index" class="nav-item nav-link menu-item"><i class="bi bi-tags-fill me-2"></i>Category</a>
+                <a asp-controller="foods" asp-action="index" class="nav-item nav-link menu-item"><i class="bi bi-tags-fill me-2"></i>Foods</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
                     <div class="dropdown-menu bg-transparent border-0">
@@ -159,13 +160,30 @@
                 </div>
             </div>
         </nav>
-        <div style="padding-bottom:100px" class="container">
+        <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
     </div>
-   
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbarItems = document.querySelectorAll('nav-item.nav-link.menu-item');
+
+            navbarItems.forEach(function (item) {
+                item.addEventListener('click', function () {
+                    navbarItems.forEach(function (otherItem) {
+                        otherItem.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
