@@ -1,0 +1,43 @@
+﻿@model UpdateCategoryDto
+
+<div class="d-flex justify-content-center mt-1">
+    <div class="col-sm-12 mt-1" style="width: 800px">
+        <a asp-controller="categories" asp-action="index" type="button" class="btn btn-outline-primary m-2"><i class="bi bi-skip-backward-fill"></i> Orqaga</a>
+        <div class="bg-secondary rounded h-90 p-4" style="border: double; border-color: red">
+            <h2 style="border: 2px; color: red" class="mb-4">Create Category</h2>
+            <form asp-controller="categories" asp-action="edit" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                    <input asp-for="Name" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Current photo</label>
+                    <input asp-for="Id" type="hidden" />
+                    <script>
+                        function displayImage(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    $('#image_preview').attr('src', e.target.result);
+                                }
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                    </script>
+                    <input asp-for="ImagePath" type="hidden" />
+                    <br/>
+                    
+                    <img id="image_preview" asp-append-version=true style="height: 150px; border-radius: 10px; border: double; border-color: red" src="@Model.ImagePath">
+                    <br />
+                    <br />
+                    <label for="formFile" class="form-label">New photo</label>
+                    <input onchange="displayImage(this)" asp-for="file" style="cursor: pointer" class="form-control bg-dark" type="file" id="formFile">
+                </div>
+                <br/>
+                <button style="width: 150px; justify-content: center" type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

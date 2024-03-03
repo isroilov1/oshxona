@@ -1,0 +1,253 @@
+﻿@using oshhona.BusinesLogic.DTOs.FoodDtos;
+
+@model PageModel<FoodDto>
+
+<div class="col-sm-12">
+    <div class="mt-3 bg-secondary rounded h-100 p-4" style="border: double; border-color: red">
+        <div class="d-flex justify-content-between align-items-center me-3">
+            <h3 class="mb-4">Foods Table</h3>
+            <div class="d-flex justify-content-between align-items-center me-3">
+                <a>New</a>
+                <a asp-controller="foods" asp-action="add" class="btn btn-lg btn-lg-square btn-primary m-2"><i class="bi bi-folder-plus"></i></a>
+            </div>
+
+        </div>
+        @if (Model.Items.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var food in Model.Items)
+                    {
+                        <tr class="bg-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                            <td>@food.Id</td>
+                            <td>@food.Name</td>
+                            <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                <img style="height: 100px; border-radius: 10px; border: double; border-color: red" class="w-10 h-10 rounded-full" src="@food" asp-append-version=true alt="Photo">
+                            </td>
+                            <td>
+                                <div class="justify-content-center">
+                                    <a asp-controller="foods" asp-action="edit" asp-route-id="@food.Id" class="btn btn-lg btn-lg-square btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
+                                    <a asp-controller="foods" asp-action="delete" asp-route-id="@food.Id"
+                                       onclick="return confirm('Are you sure delete?')" class="btn btn-lg btn-lg-square btn-primary m-1">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="mt-5">
+                <i class="bi bi-database-fill-exclamation"></i><a>food is empty</a>
+            </div>
+
+        }
+
+        @if (Model.TotalPages > 1)
+        {
+            <input type="hidden" value="@Model.PageNumber" id="pageNumber" />
+
+            <div class="d-flex justify-content-center">
+                @if (Model.TotalPages < 6)
+                {
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            @for (int i = 1; i <= Model.TotalPages; i++)
+                            {
+                                if (Model.PageNumber == i)
+                                {
+                                    <li class="page-item active">
+                                        <a class="page-link" style="background-color: black"
+                                           asp-controller="foods" asp-action="index" asp-route-pageNumber="@i">@i</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" style="background-color: black"
+                                           asp-controller="foods" asp-action="index" asp-route-pageNumber="@i">@i</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                }
+                else if (Model.PageNumber < 3)
+                {
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="background-color: black">
+                            @if (Model.PageNumber == 1)
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link" style="background-color: black" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" style="background-color: black" aria-label="Previous"
+                                       asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber-1)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="1">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="2">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="3">3</a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link" style="background-color: black" href="#">...</a></li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@Model.TotalPages">
+                                    @Model.TotalPages
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" aria-label="Next"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber+1)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+                else if (Model.TotalPages - 2 >= Model.PageNumber)
+                {
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="background-color: black">
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" aria-label="Previous"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber-1)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="1">1</a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link" style="background-color: black">...</a></li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber - 1)">
+                                    @(Model.PageNumber - 1)
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber)">
+                                    @Model.PageNumber
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber + 1)">
+                                    @(Model.PageNumber + 1)
+                                </a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link" style="background-color: black">...</a></li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.TotalPages)">
+                                    @Model.TotalPages
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" aria-label="Next"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber+1)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+                else
+                {
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" aria-label="Previous"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber-1)">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black"
+                                   asp-controller="foods" asp-action="index" asp-route-pageNumber="1">1</a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link" style="background-color: black" href="#">...</a></li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" style="background-color: black" asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.TotalPages - 2)">
+                                    @(Model.TotalPages - 2)
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.TotalPages - 1)">
+                                    @(Model.TotalPages - 1)
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" style="background-color: black" asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.TotalPages)">
+                                    @Model.TotalPages
+                                </a>
+                            </li>
+                            @if (Model.PageNumber == Model.TotalPages)
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link" style="background-color: black" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" style="background-color: black" aria-label="Next"
+                                       asp-controller="foods" asp-action="index" asp-route-pageNumber="@(Model.PageNumber+1)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                }
+            </div>
+        }
+        <script>
+            const navbarItems = document.querySelectorAll('.nav-item.nav-link');
+
+            function changeColorPagination() {
+                <style>
+                            .page - link {
+                    background - color: red;
+                    color: black;
+                }
+                </style>
+            }
+        </script>
+
+    </div>
+</div>
+
