@@ -23,6 +23,7 @@ public class CategoriesController(ICategoryService categoryService)
         try
         {
             _categoryService.Create(dto);
+            
             return RedirectToAction("index");
         }
         catch (CustomException ex)

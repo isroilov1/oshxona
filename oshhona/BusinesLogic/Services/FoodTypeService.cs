@@ -1,12 +1,11 @@
-﻿
-namespace oshhona.BusinesLogic.Services;
+﻿namespace oshhona.BusinesLogic.Services;
 
-public class FoodService(IUnitOfWork unitOfWork)
-    : IFoodService
+public class FoodTypeService(IUnitOfWork unitOfWork)
+    : IFoodTypeService
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public void Create(AddFoodDto FoodDto)
+    public void Create(AddFoodTypeDto FoodDto)
     {
         if (FoodDto == null)
         {
@@ -20,15 +19,14 @@ public class FoodService(IUnitOfWork unitOfWork)
 
         for (int i = 0; i < 100; i++)
         {
-            Foods Food = new()
+            FoodTypes Food = new()
             {
                 Name = FoodDto.Name,
-                Description = FoodDto.Description,
-                Price = FoodDto.Price,
-                FoodTypeId = FoodDto.FoodTypeId,
-                FoodType = null
+                ImageUrl = FoodDto.ImagePath,
+                CategoryId = FoodDto.CategoryId,
+                Category = null
             };
-            _unitOfWork.Foods.Add(Food);
+            _unitOfWork.FoodType.Add(Food);
         }
     }
 
@@ -43,37 +41,35 @@ public class FoodService(IUnitOfWork unitOfWork)
         _unitOfWork.Foods.Delete(Food.Id);
     }
 
-    public List<FoodDto> GetAll()
+    public List<FoodTypeDto> GetAll()
     {
-        var Foods = _unitOfWork.Foods.GetFoodWithReleations();
-        var dtos = Foods.Select(Food => Food.ToFoodDto());
+        var Foods = _unitOfWork.FoodType.GetFoodTypeWithReleations();
+        var dtos = Foods.Select(Food => Food.ToFoodTypeDto());
         return dtos.ToList();
     }
 
-    public FoodDto GetById(int id)
+    public FoodTypeDto GetById(int id)
     {
-        var Food = _unitOfWork.Foods.GetFoodWithReleations().FirstOrDefault(c => c.Id == id);
+        var Food = _unitOfWork.FoodType.GetFoodTypeWithReleations().FirstOrDefault(c => c.Id == id);
         if (Food == null)
         {
             throw new CustomException("", "Food not found");
         }
 
-        return Food.ToFoodDto();
+        return Food.ToFoodTypeDto();
     }
 
-    public void Update(UpdateFoodDto FoodDto)
+    public void Update(UpdateFoodTypeDto FoodDto)
     {
-        var Food = _unitOfWork.Foods.GetById(FoodDto.Id);
+        var Food = _unitOfWork.FoodType.GetById(FoodDto.Id);
         if (Food == null)
         {
             throw new CustomException("", "Food not found");
         }
 
         Food.Name = FoodDto.Name;
-        Food.Description = FoodDto.Description;
-        Food.Price = FoodDto.Price;
-        Food.FoodTypeId = FoodDto.FoodTypeId;
+        Food.CategoryId = FoodDto.CategoryId;
 
-        _unitOfWork.Foods.Update(Food);
+        _unitOfWork.FoodType.Update(Food);
     }
 }

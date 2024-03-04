@@ -8,6 +8,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IFoodService, FoodService>();
+builder.Services.AddTransient<IFoodTypeService, FoodTypeService>();
 builder.Services.AddTransient<IFileService, FileService>();
 
 var app = builder.Build();

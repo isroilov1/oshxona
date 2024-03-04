@@ -8,6 +8,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Category> Categories { get; set; }
     public DbSet<Foods> Foods { get; set; }
+    public DbSet<FoodTypes> FoodType { get; set; }
     public DbSet<Image> Images { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<User> Users { get; set; }

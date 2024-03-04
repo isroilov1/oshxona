@@ -7,6 +7,8 @@ public class UnitOfWork(AppDbContext dbContext)
 
     public IFoodInterface Foods => new FoodRepository(dbContext);
 
+    public IFoodTypeInterface FoodType => new FoodTypeRepository(dbContext);
+
     public ICategoryInterface Categories => new CategoryRepository(dbContext);
 
     public IImageInterface Images => new ImageRepository(dbContext);
