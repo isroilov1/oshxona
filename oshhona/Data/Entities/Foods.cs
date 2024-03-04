@@ -7,8 +7,8 @@
         public double Price { get; set; }
         public string ImageUrl { get; set; } = "";
 
-        public int CategoryId { get; set; }
-        public Category Category { get; set; } = new();
+        public int FoodTypeId { get; set; }
+        public FoodTypes FoodType { get; set; } = new();
         //public List<Order> Orders { get; set; } = new();
     }
 }

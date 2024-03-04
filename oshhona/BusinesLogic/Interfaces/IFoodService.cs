@@ -4,7 +4,7 @@ public interface IFoodService
 {
     List<FoodDto> GetAll();
     FoodDto GetById(int id);
-    void Create(AddFoodDto carDto);
-    void Update(UpdateFoodDto carDto);
+    void Create(AddFoodDto foodDto);
+    void Update(UpdateFoodDto foodDto);
     void Delete(int id);
 }

@@ -1,26 +1,26 @@
 ﻿namespace oshhona.Controllers;
 
 public class FoodsController(IFoodService FoodService,
-ICategoryService categoryService)
+IFoodTypeService foodService)
     : Controller
 {
     private readonly IFoodService _FoodService = FoodService;
-    private readonly ICategoryService _categoryService = categoryService;
+    private readonly IFoodTypeService _foodService = foodService;
 
     public IActionResult Index(int pageNumber = 1)
     {
-        var moshinalar = _FoodService.GetAll();
-        var pageModel = new PageModel<FoodDto>(moshinalar, pageNumber);
+        var ovqatlar = _FoodService.GetAll();
+        var pageModel = new PageModel<FoodDto>(ovqatlar, pageNumber);
         return View(pageModel);
     }
 
     public IActionResult Add()
     {
-        var categories = _categoryService.GetAll();
+        var foods = _foodService.GetAll();
 
         AddFoodDto dto = new()
         {
-            Categories = categories
+            FoodType = foods
         };
 
         return View(dto);
@@ -65,8 +65,8 @@ ICategoryService categoryService)
                 Name = Food.Name,
                 Description = Food.Description,
                 Price = Food.Price,
-                CategoryId = Food.Category.Id,
-                Categories = _categoryService.GetAll(),
+                FoodTypeId = Food.FoodType.Id,
+                FoodType = _foodService.GetAll(),
             };
 
             return View(dto);

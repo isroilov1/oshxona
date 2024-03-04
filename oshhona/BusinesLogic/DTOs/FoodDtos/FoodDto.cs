@@ -7,5 +7,7 @@ public class FoodDto
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
     public double Price { get; set; }
-    public CategoryDto Category { get; set; } = new();
+    public string ImagePath { get; set; } = "";
+    public IFormFile? file { get; set; }
+    public FoodTypeDto FoodType { get; set; } = new();
 }

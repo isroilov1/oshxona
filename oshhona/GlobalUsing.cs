@@ -14,3 +14,5 @@ global using System.Security.Cryptography;
 global using System.Text;
 global using Microsoft.AspNetCore.Authorization;
 global using oshhona.BusinesLogic.Common;
+global using oshhona.Data.Interfaces;
+global using oshhona.BusinesLogic.DTOs.FoodTypeDtos;

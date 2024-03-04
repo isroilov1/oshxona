@@ -1,5 +1,4 @@
-﻿
-namespace Oshxona.Data.Inrterfaces;
+﻿namespace Oshxona.Data.Inrterfaces;
 
 public interface ICategoryInterface : IRepository<Category>
 {

@@ -1,4 +1,4 @@
 ﻿public interface IFoodInterface : IRepository<Foods>
 {
-    List<Foods> GetFoodsWithReleations();
+    public List<Foods> GetFoodWithReleations();
 }

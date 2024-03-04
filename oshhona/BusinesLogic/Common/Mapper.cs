@@ -23,6 +23,16 @@ public static class Mapper
             Name = food.Name,
             Description = food.Description,
             Price = food.Price,
+            ImagePath = food.ImageUrl,
+            FoodType = (FoodTypeDto)food.FoodType
+        };
+
+    public static FoodTypeDto ToFoodTypeDto(this FoodTypes food)
+        => new()
+        {
+            Id = food.Id,
+            Name = food.Name,
+            ImagePath = food.ImageUrl,
             Category = (CategoryDto)food.Category
         };
 }
