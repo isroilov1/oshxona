@@ -9,5 +9,6 @@ public class FoodDto
     public double Price { get; set; }
     public string ImagePath { get; set; } = "";
     public IFormFile? file { get; set; }
+    public int FoodTypeId { get; set; }
     public FoodTypeDto FoodType { get; set; } = new();
 }

@@ -12,48 +12,47 @@
             </div>
             
         </div>
-            @if (Model.Items.Any())
-            {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Photo</th>
-                        <th scope="col">Actions</th>
+        @if (Model.Items.Any())
+        {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Items)
+                {
+                    <tr class="bg-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+                        <td class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">@category.Id</td>
+                        <td class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">@category.Name</td>
+                        <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            <img style="height: 100px; border-radius: 10px; border: double; border-color: red" class="w-10 h-10 rounded-full" src="@category.ImagePath" asp-append-version=true alt="Photo">
+                        </td>
+                        <td>
+                            <div class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                <a asp-controller="categories" asp-action="edit" asp-route-id="@category.Id" class="btn btn-lg btn-lg-square btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
+                                <a asp-controller="categories" asp-action="delete" asp-route-id="@category.Id" 
+                                onclick="return confirm('Are you sure delete?')" class="btn btn-lg btn-lg-square btn-primary m-1">
+                                <i class="bi bi-trash-fill"></i></a>
+                            </div>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var category in Model.Items)
-                    {
-                        <tr class="bg-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            
-                            <td>@category.Id</td>
-                            <td>@category.Name</td>
-                            <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                <img style="height: 100px; border-radius: 10px; border: double; border-color: red" class="w-10 h-10 rounded-full" src="@category.ImagePath" asp-append-version=true alt="Photo">
-                            </td>
-                            <td>
-                                <div class="justify-content-center">
-                                    <a asp-controller="categories" asp-action="edit" asp-route-id="@category.Id" class="btn btn-lg btn-lg-square btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
-                                    <a asp-controller="categories" asp-action="delete" asp-route-id="@category.Id" 
-                                    onclick="return confirm('Are you sure delete?')" class="btn btn-lg btn-lg-square btn-primary m-1">
-                                    <i class="bi bi-trash-fill"></i></a>
-                                    
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            }
-            else
-            {
-            <div class="mt-5">
-                <i class="bi bi-database-fill-exclamation"></i><a>Category is empty</a>
-            </div>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+        <div class="mt-5">
+            <i class="bi bi-database-fill-exclamation"></i><a>Category is empty</a>
+        </div>
                 
-            }
+        }
 
         @if (Model.TotalPages > 1)
         {

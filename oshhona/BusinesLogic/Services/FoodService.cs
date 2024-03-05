@@ -1,10 +1,14 @@
 ﻿
+using oshhona.BusinesLogic.Interfaces;
+
 namespace oshhona.BusinesLogic.Services;
 
-public class FoodService(IUnitOfWork unitOfWork)
+public class FoodService(IUnitOfWork unitOfWork,
+                         IFileService fileService)
     : IFoodService
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IFileService _fileService = fileService;
 
     public void Create(AddFoodDto FoodDto)
     {
@@ -18,18 +22,17 @@ public class FoodService(IUnitOfWork unitOfWork)
             throw new CustomException("Name", "Food name is required");
         }
 
-        for (int i = 0; i < 100; i++)
+        Foods Food = new()
         {
-            Foods Food = new()
-            {
-                Name = FoodDto.Name,
-                Description = FoodDto.Description,
-                Price = FoodDto.Price,
-                FoodTypeId = FoodDto.FoodTypeId,
-                FoodType = null
-            };
-            _unitOfWork.Foods.Add(Food);
-        }
+            Name = FoodDto.Name,
+            Description = FoodDto.Description,
+            Price = FoodDto.Price,
+            ImageUrl = _fileService.UploadImage(FoodDto.file),
+            FoodTypeId = FoodDto.FoodTypeId,
+            FoodType = null
+        };
+        _unitOfWork.Foods.Add(Food);
+        
     }
 
     public void Delete(int id)
@@ -39,7 +42,6 @@ public class FoodService(IUnitOfWork unitOfWork)
         {
             throw new CustomException("", "Food not found");
         }
-
         _unitOfWork.Foods.Delete(Food.Id);
     }
 
@@ -67,6 +69,11 @@ public class FoodService(IUnitOfWork unitOfWork)
         if (Food == null)
         {
             throw new CustomException("", "Food not found");
+        }
+
+        if (FoodDto.file != null)
+        {
+            Food.ImageUrl = _fileService.UploadImage(FoodDto.file);
         }
 
         Food.Name = FoodDto.Name;

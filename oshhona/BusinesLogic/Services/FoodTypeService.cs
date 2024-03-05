@@ -1,4 +1,5 @@
-﻿using oshhona.BusinesLogic.DTOs.CategoryDtos;
+﻿using Microsoft.IdentityModel.Tokens;
+using oshhona.BusinesLogic.DTOs.CategoryDtos;
 
 namespace oshhona.BusinesLogic.Services;
 
@@ -27,6 +28,10 @@ public class FoodTypeService(IUnitOfWork unitOfWork,
         {
             throw new CustomException("file", "FoodType image is required");
         }
+        if (FoodDto.CategoryId == 0)
+        {
+            throw new CustomException("", "Category is empty");
+        }
 
         FoodTypes FoodType = new()
         {
@@ -36,7 +41,6 @@ public class FoodTypeService(IUnitOfWork unitOfWork,
             Category = null
         };
         _unitOfWork.FoodType.Add(FoodType);
-        
     }
 
     public void Delete(int id)
@@ -80,10 +84,18 @@ public class FoodTypeService(IUnitOfWork unitOfWork,
         {
             throw new CustomException("", "FoodType name is required");
         }
-
         if (FoodDto.Name.Length < 3 || FoodDto.Name.Length > 30)
         {
             throw new CustomException("", "FoodType name must be between 3 and 30 characters");
+        }
+        if (FoodDto.CategoryId == 0)
+        {
+            throw new CustomException("", "Category is empty");
+        }
+
+        if (FoodDto.file != null)
+        {
+            FoodDto.ImagePath = _fileService.UploadImage(FoodDto.file);
         }
 
         Food.Name = FoodDto.Name;

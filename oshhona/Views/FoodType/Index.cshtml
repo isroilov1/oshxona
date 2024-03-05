@@ -29,17 +29,17 @@
                     {
                         <tr class="bg-black border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                            <td>@food.Id</td>
-                            <td>@food.Name</td>
-                            <td>@food.Category.Name</td>
+                            <td class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">@food.Id</td>
+                            <td class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">@food.Name</td>
+                            <td class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">@food.Category.Name</td>
                             <td scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                 <img style="height: 100px; border-radius: 10px; border: double; border-color: red" class="w-10 h-10 rounded-full" src="@food.ImagePath" asp-append-version=true alt="Photo">
                             </td>
                             <td>
-                                <div class="justify-content-center">
+                                <div class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                     <a asp-controller="foodtype" asp-action="edit" asp-route-id="@food.Id" class="btn btn-lg btn-lg-square btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
                                     <a asp-controller="foodtype" asp-action="delete" asp-route-id="@food.Id"
-                                       onclick="return confirm('Are you sure delete?')" class="btn btn-lg btn-lg-square btn-primary m-1">
+                                        onclick="return confirm('Are you sure delete?')" class="btn btn-lg btn-lg-square btn-primary m-1">
                                         <i class="bi bi-trash-fill"></i>
                                     </a>
 
@@ -242,3 +242,10 @@
     </div>
 </div>
 
+<style>
+    .prosta{
+        display: flex;
+        align-items: center; 
+        justify-content: space-between
+    }
+</style>
