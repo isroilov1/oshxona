@@ -50,7 +50,7 @@ public IActionResult Delete(int id)
     }
     catch (CustomException)
     {
-        return RedirectToAction("error", "home", new { url = "/categories/index" });
+        return RedirectToAction("error", "home", new { url = "/foodtype/index" });
     }
 }
 
@@ -64,15 +64,14 @@ public IActionResult Edit(int id)
             Id = Food.Id,
             Name = Food.Name,
             ImagePath = Food.ImagePath,
-            CategoryId = Food.Category.Id,
-            Categories = _categoryService.GetAll(),
+            CategoryId = Food.Category.Id
         };
 
         return View(dto);
     }
     catch (CustomException)
     {
-        return RedirectToAction("error", "home", new { url = "/categories/index" });
+        return RedirectToAction("error", "home", new { url = "/foodtype/index" });
     }
 }
 
@@ -100,7 +99,7 @@ public IActionResult Detail(int id)
     }
     catch (CustomException)
     {
-        return RedirectToAction("error", "home", new { url = "/categories/index" });
+        return RedirectToAction("error", "home", new { url = "/foodtype/index" });
     }
 }
 }

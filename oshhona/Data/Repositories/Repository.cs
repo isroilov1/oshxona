@@ -1,5 +1,4 @@
-﻿
-namespace oshhona.Data.Repositories;
+﻿namespace oshhona.Data.Repositories;
 
 public class Repository<TEntity>(AppDbContext dbContext)
     : IRepository<TEntity> where TEntity : BaseEntity
