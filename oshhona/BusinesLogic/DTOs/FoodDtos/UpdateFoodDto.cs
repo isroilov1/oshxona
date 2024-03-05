@@ -1,7 +1,6 @@
 ﻿namespace oshhona.BusinesLogic.DTOs.FoodDtos;
 
-public class UpdateFoodDto : AddFoodDto
+public class UpdateFoodDto : FoodDto
 {
-    public int Id { get; set; }
-    public IFormFile? file { get; set; }
+    public List<FoodTypeDto> FoodTypes { get; set; } = new();
 }

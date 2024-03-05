@@ -59,12 +59,14 @@ public IActionResult Edit(int id)
     try
     {
         var Food = _FoodService.GetById(id);
-        UpdateFoodTypeDto dto = new()
+        var categories = _categoryService.GetAll();
+            UpdateFoodTypeDto dto = new()
         {
             Id = Food.Id,
             Name = Food.Name,
             ImagePath = Food.ImagePath,
-            CategoryId = Food.Category.Id
+            CategoryId = Food.CategoryId,
+            Categories = categories
         };
 
         return View(dto);

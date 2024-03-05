@@ -2,42 +2,60 @@
 
 <div class="d-flex justify-content-center mt-1">
     <div class="col-sm-12 mt-1" style="width: 800px">
-        <a asp-controller="categories" asp-action="index" type="button" class="btn btn-outline-primary m-2"><i class="bi bi-skip-backward-fill"></i> Back</a>
+        <a asp-controller="foods" asp-action="index" type="button" class="btn btn-outline-primary m-2"><i class="bi bi-skip-backward-fill"></i> Back</a>
         <div class="bg-secondary rounded h-90 p-4" style="border: double; border-color: red">
-            <h2 style="border: 2px; color: red" class="mb-4">Create Category</h2>
-            <form asp-controller="categories" asp-action="edit" enctype="multipart/form-data">
+            <h2 style="border: 2px; color: red" class="mb-4">Edit Food</h2>
+            <form asp-controller="foods" asp-action="edit" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Name</label>
                     <input asp-for="Name" type="text" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Current photo</label>
+                    <label class="form-label">Description</label>
+                    <input asp-for="Description" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input asp-for="Price" type="number" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Current photo</label>
                     <input asp-for="Id" type="hidden" />
-                    <script>
-                        function displayImage(input) {
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-
-                                reader.onload = function (e) {
-                                    $('#image_preview').attr('src', e.target.result);
-                                }
-
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
-                    </script>
                     <input asp-for="ImagePath" type="hidden" />
-                    <br/>
-                    
+                    <br />
                     <img id="image_preview" asp-append-version=true style="height: 150px; border-radius: 10px; border: double; border-color: red" src="@Model.ImagePath">
                     <br />
                     <br />
                     <label for="formFile" class="form-label">New photo</label>
-                    <input onchange="displayImage(this)" asp-for="file" style="cursor: pointer" class="form-control bg-dark" type="file" id="formFile">
+                    <input asp-for="file" onchange="displayImage(this)" style="cursor: pointer" class="form-control bg-dark" type="file" id="formFile">
+                    <span asp-validation-for="file" class="text-danger"></span>
                 </div>
+                <label class="form-label">Food Type</label>
+                <select asp-for=FoodTypeId class="form-select mb-3" aria-label="Default select example" required>
+                    <option disabled selected> -- Select FoodType -- </option>
+                    @foreach (var food in Model.FoodTypes)
+                    {
+                        <option value="@food.Id">@food.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="FoodTypeId" class="text-danger"></span>
                 <br/>
                 <button style="width: 150px; justify-content: center" type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    function displayImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

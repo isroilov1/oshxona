@@ -2,6 +2,5 @@
 
 public class UpdateFoodTypeDto : FoodTypeDto
 {
-    public int Id { get; set; }
-    public IFormFile? file { get; set; }
+    public List<CategoryDto> Categories { get; set; } = new();
 }

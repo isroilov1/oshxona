@@ -5,7 +5,7 @@ IFoodTypeService foodService)
     : Controller
 {
     private readonly IFoodService _FoodService = FoodService;
-    private readonly IFoodTypeService _foodService = foodService;
+    private readonly IFoodTypeService _foodTypeService = foodService;
 
     public IActionResult Index(int pageNumber = 1)
     {
@@ -16,13 +16,12 @@ IFoodTypeService foodService)
 
     public IActionResult Add()
     {
-        var foods = _foodService.GetAll();
+        var foods = _foodTypeService.GetAll();
 
         AddFoodDto dto = new()
         {
-            FoodType = foods
+            FoodTypes = foods
         };
-
         return View(dto);
     }
 
@@ -50,7 +49,7 @@ IFoodTypeService foodService)
         }
         catch (CustomException)
         {
-            return RedirectToAction("error", "home", new { url = "/categories/index" });
+            return RedirectToAction("error", "home", new { url = "/food/index" });
         }
     }
 
@@ -66,14 +65,14 @@ IFoodTypeService foodService)
                 Description = Food.Description,
                 Price = Food.Price,
                 FoodTypeId = Food.FoodType.Id,
-                FoodType = _foodService.GetAll(),
+                FoodTypes = _foodTypeService.GetAll(),
             };
 
             return View(dto);
         }
         catch (CustomException)
         {
-            return RedirectToAction("error", "home", new { url = "/categories/index" });
+            return RedirectToAction("error", "home", new { url = "/foods/index" });
         }
     }
 
@@ -101,7 +100,7 @@ IFoodTypeService foodService)
         }
         catch (CustomException)
         {
-            return RedirectToAction("error", "home", new { url = "/categories/index" });
+            return RedirectToAction("error", "home", new { url = "/foods/index" });
         }
     }
 }

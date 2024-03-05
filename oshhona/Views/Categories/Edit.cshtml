@@ -13,19 +13,6 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Current photo</label>
                     <input asp-for="Id" type="hidden" />
-                    <script>
-                        function displayImage(input) {
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-
-                                reader.onload = function (e) {
-                                    $('#image_preview').attr('src', e.target.result);
-                                }
-
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
-                    </script>
                     <input asp-for="ImagePath" type="hidden" />
                     <br/>
                     
@@ -41,3 +28,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    function displayImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
