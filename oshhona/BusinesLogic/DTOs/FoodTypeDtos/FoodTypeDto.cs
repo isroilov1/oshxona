@@ -7,6 +7,7 @@ public class FoodTypeDto
     public string Name { get; set; } = null!;
     public string ImagePath { get; set; } = "";
     public IFormFile? file { get; set; }
+    public int CategoryId { get; set; }
     public CategoryDto Category { get; set; } = new();
 
     public static implicit operator FoodTypeDto(FoodTypes foodType)
@@ -14,6 +15,7 @@ public class FoodTypeDto
         {
             Id = foodType.Id,
             Name = foodType.Name,
-            ImagePath = foodType.ImageUrl
+            ImagePath = foodType.ImageUrl,
+            CategoryId = foodType.CategoryId
         };
 }
