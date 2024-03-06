@@ -1,3 +1,6 @@
+
+using AutoMapper;
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -10,14 +13,35 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<IFoodService, FoodService>();
 builder.Services.AddTransient<IFoodTypeService, FoodTypeService>();
 builder.Services.AddTransient<IFileService, FileService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+var mapConfig = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutoMapperProfile());
+});
+
+builder.Services.AddSingleton(mapConfig.CreateMapper());
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddAuthentication()
+    .AddCookie("Admin", config =>
+    {
+        config.LoginPath = "/admin/auth/login";
+    })
+    .AddCookie("User", config =>
+    {
+        config.LoginPath = "/auth/login";
+    });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -27,6 +51,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+       name: "admin",
+          pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

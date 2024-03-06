@@ -1,4 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using oshhona.Areas.Admin.Data.Entities;
+using oshhona.Areas.Admin.Data.Interfaces;
 using oshhona.BusinesLogic.DTOs.CategoryDtos;
 
 namespace oshhona.BusinesLogic.Services;

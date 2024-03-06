@@ -1,4 +1,6 @@
 ﻿
+using oshhona.Areas.Admin.Data.Entities;
+
 namespace oshhona.BusinesLogic.DTOs.FoodTypeDtos;
 
 public class FoodTypeDto

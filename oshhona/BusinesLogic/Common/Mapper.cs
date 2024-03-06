@@ -1,4 +1,6 @@
-﻿namespace oshhona.BusinesLogic.Common;
+﻿using oshhona.Areas.Admin.Data.Entities;
+
+namespace oshhona.BusinesLogic.Common;
 
 public static class Mapper
 {
