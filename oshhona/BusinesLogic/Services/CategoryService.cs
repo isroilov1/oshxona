@@ -1,4 +1,7 @@
-﻿namespace oshhona.BusinesLogic.Services;
+﻿using oshhona.Areas.Admin.Data.Entities;
+using oshhona.Areas.Admin.Data.Interfaces;
+
+namespace oshhona.BusinesLogic.Services;
 
 public class CategoryService(IUnitOfWork unitOfWork,
                              IFileService fileService)

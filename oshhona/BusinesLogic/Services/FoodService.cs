@@ -1,4 +1,6 @@
 ﻿
+using oshhona.Areas.Admin.Data.Entities;
+using oshhona.Areas.Admin.Data.Interfaces;
 using oshhona.BusinesLogic.Interfaces;
 
 namespace oshhona.BusinesLogic.Services;

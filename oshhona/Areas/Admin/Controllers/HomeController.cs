@@ -1,5 +1,4 @@
-﻿
-namespace oshhona.Areas.Admin.Controllers;
+﻿namespace oshhona.Areas.Admin.Controllers;
 
 [Area("admin")]
 [Authorize(AuthenticationSchemes = "Admin")]
