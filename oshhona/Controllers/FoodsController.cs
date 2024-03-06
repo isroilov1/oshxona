@@ -63,6 +63,7 @@ IFoodTypeService foodService)
                 Id = Food.Id,
                 Name = Food.Name,
                 Description = Food.Description,
+                ImagePath = Food.ImagePath,
                 Price = Food.Price,
                 FoodTypeId = Food.FoodType.Id,
                 FoodTypes = _foodTypeService.GetAll(),

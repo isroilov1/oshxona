@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Price</label>
-                <input asp-for="Price" type="number" class="form-control">
+                <input asp-for="Price" type="text" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Photo</label>
@@ -25,10 +25,18 @@
             </div>
             <label class="form-label">Food Type</label>
             <select asp-for=FoodTypeId class="form-select mb-3" aria-label="Default select example" required>
-                <option disabled selected> -- Select FoodType -- </option>
+                
                 @foreach (var food in Model.FoodTypes)
                 {
-                        <option value="@food.Id">@food.Name</option>
+                    if(food.Id == Model.FoodTypeId)
+                    {
+                            <option selected value="@food.Id">@food.Name</option>
+                    }
+                    else
+                    {
+                            <option value="@food.Id">@food.Name</option>
+                    }
+
                 }
             </select>
             <span asp-validation-for="FoodTypeId" class="text-danger"></span>
