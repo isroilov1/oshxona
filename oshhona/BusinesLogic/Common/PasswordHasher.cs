@@ -6,7 +6,8 @@ public static class PasswordHasher
     {
         using var sha256 = SHA256.Create();
         var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-        return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+        var parol = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+        return parol;
     }
 
     public static bool VerifyPassword(string password, string hashedPassword)

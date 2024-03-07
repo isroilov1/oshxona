@@ -1,5 +1,7 @@
 ﻿namespace oshhona.Areas.Admin.Controllers;
 
+[Area("admin")]
+[Authorize(AuthenticationSchemes = "Admin")]
 public class CategoriesController(ICategoryService categoryService)
 : Controller
 {
@@ -23,7 +25,6 @@ public class CategoriesController(ICategoryService categoryService)
         try
         {
             _categoryService.Create(dto);
-
             return RedirectToAction("index");
         }
         catch (CustomException ex)
