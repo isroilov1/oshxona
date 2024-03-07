@@ -1,8 +1,4 @@
-﻿using oshhona.Areas.Admin.Data;
-using oshhona.Areas.Admin.Data.Entities;
-using oshhona.Areas.Admin.Data.Interfaces;
-
-namespace oshhona.Areas.Admin.Data.Repositories
+﻿namespace oshhona.Areas.Admin.Data.Repositories
 {
     public class FoodTypeRepository(AppDbContext dbContext)
     : Repository<FoodTypes>(dbContext), IFoodTypeInterface

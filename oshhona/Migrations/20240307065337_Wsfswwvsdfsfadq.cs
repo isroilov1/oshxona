@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace oshhona.Migrations
 {
     /// <inheritdoc />
-    public partial class AddOrders : Migration
+    public partial class Wsfswwvsdfsfadq : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -131,7 +131,7 @@ namespace oshhona.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "FISH", "Password", "Role", "Tel" },
-                values: new object[] { 1, "Database", "Isroilov", "Ismoiljon4515", 0, "+998991114515" });
+                values: new object[] { 1, "Database", "Isroilov", "7058b3884b49c42c1f17597f1d61f7e3f44baee3b7a9afa872e84a25288e04a4", 0, "+998991114515" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Foods_FoodTypeId",

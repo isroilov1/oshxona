@@ -1,7 +1,4 @@
-﻿
-using oshhona.Areas.Admin.Data.Entities;
-
-namespace oshhona.BusinesLogic.DTOs.FoodTypeDtos;
+﻿namespace oshhona.BusinesLogic.DTOs.FoodTypeDtos;
 
 public class FoodTypeDto
 {
@@ -11,6 +8,7 @@ public class FoodTypeDto
     public IFormFile? file { get; set; }
     public int CategoryId { get; set; }
     public CategoryDto Category { get; set; } = new();
+    public List<Foods>? Foods { get; set; }
 
     public static implicit operator FoodTypeDto(FoodTypes foodType)
         => new()
@@ -18,6 +16,7 @@ public class FoodTypeDto
             Id = foodType.Id,
             Name = foodType.Name,
             ImagePath = foodType.ImageUrl,
-            CategoryId = foodType.CategoryId
+            CategoryId = foodType.CategoryId,
+            Foods = foodType.Foods
         };
 }

@@ -26,6 +26,7 @@ public static class Mapper
             Description = food.Description,
             Price = food.Price,
             ImagePath = food.ImageUrl,
+            FoodTypeId = food.FoodTypeId,
             FoodType = (FoodTypeDto)food.FoodType
         };
 
@@ -35,6 +36,7 @@ public static class Mapper
             Id = food.Id,
             Name = food.Name,
             ImagePath = food.ImageUrl,
+            Foods = food.Foods,
             Category = (CategoryDto)food.Category
         };
 }
