@@ -189,7 +189,7 @@ namespace oshhona.Migrations
                             Id = 1,
                             Address = "Database",
                             FISH = "Isroilov",
-                            Password = "Ismoiljon4515",
+                            Password = "7058b3884b49c42c1f17597f1d61f7e3f44baee3b7a9afa872e84a25288e04a4",
                             Role = 0,
                             Tel = "+998991114515"
                         });
@@ -198,7 +198,7 @@ namespace oshhona.Migrations
             modelBuilder.Entity("oshhona.Areas.Admin.Data.Entities.FoodTypes", b =>
                 {
                     b.HasOne("oshhona.Areas.Admin.Data.Entities.Category", "Category")
-                        .WithMany("FoodType")
+                        .WithMany("FoodTypes")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -238,7 +238,7 @@ namespace oshhona.Migrations
 
             modelBuilder.Entity("oshhona.Areas.Admin.Data.Entities.Category", b =>
                 {
-                    b.Navigation("FoodType");
+                    b.Navigation("FoodTypes");
                 });
 
             modelBuilder.Entity("oshhona.Areas.Admin.Data.Entities.FoodTypes", b =>

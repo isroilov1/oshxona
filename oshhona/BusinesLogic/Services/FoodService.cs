@@ -1,9 +1,4 @@
-﻿
-using oshhona.Areas.Admin.Data.Entities;
-using oshhona.Areas.Admin.Data.Interfaces;
-using oshhona.BusinesLogic.Interfaces;
-
-namespace oshhona.BusinesLogic.Services;
+﻿namespace oshhona.BusinesLogic.Services;
 
 public class FoodService(IUnitOfWork unitOfWork,
                          IFileService fileService)
@@ -51,7 +46,8 @@ public class FoodService(IUnitOfWork unitOfWork,
     {
         var Foods = _unitOfWork.Foods.GetFoodWithReleations();
         var dtos = Foods.Select(Food => Food.ToFoodDto());
-        return dtos.ToList();
+        var list = dtos.ToList();
+        return list;
     }
 
     public FoodDto GetById(int id)
