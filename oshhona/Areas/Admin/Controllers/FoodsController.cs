@@ -1,5 +1,7 @@
 ﻿namespace oshhona.Areas.Admin.Controllers;
 
+[Area("admin")]
+[Authorize(AuthenticationSchemes = "Admin")]
 public class FoodsController(IFoodService FoodService,
 IFoodTypeService foodService)
     : Controller

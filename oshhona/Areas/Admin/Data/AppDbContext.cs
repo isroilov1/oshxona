@@ -21,7 +21,7 @@ public class AppDbContext : DbContext
             Id = 1,
             FISH = "Isroilov",
             Tel = "+998991114515",
-            Password = "Ismoiljon4515",
+            Password = PasswordHasher.HashPassword("Ismoiljon.4515"),
             Address = "Database",
             Role = Role.Admin
         };

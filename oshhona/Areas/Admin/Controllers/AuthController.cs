@@ -1,7 +1,4 @@
-﻿using oshhona.Areas.Admin.Data.Entities;
-using oshhona.BusinesLogic.DTOs.UsesrDTOs;
-
-namespace oshhona.Areas.Admin.Controllers;
+﻿namespace oshhona.Areas.Admin.Controllers;
 
 [Area("admin")]
 

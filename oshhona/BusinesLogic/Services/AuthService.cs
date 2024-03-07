@@ -134,7 +134,7 @@ public class AuthService(IUnitOfWork unitOfWork,
                 new AuthenticationProperties
                 {
                     IsPersistent = true,
-                    ExpiresUtc = DateTime.UtcNow.AddDays(1)
+                    ExpiresUtc = DateTime.UtcNow.AddMinutes(2)
                 });
         }
         else
