@@ -1,7 +1,4 @@
-﻿using oshhona.Areas.Admin.Data.Entities;
-using oshhona.Areas.Admin.Data.Interfaces;
-
-namespace oshhona.BusinesLogic.Services;
+﻿namespace oshhona.BusinesLogic.Services;
 
 public class OrderService(IUnitOfWork unitOfWork,
                           IAuthService authService)
