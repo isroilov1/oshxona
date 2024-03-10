@@ -1,7 +1,3 @@
-
-
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using oshhona.Models;
 namespace Oshxona.Controllers;
 
 public class HomeController(IFoodService FoodService,
@@ -26,7 +22,7 @@ public class HomeController(IFoodService FoodService,
 
         IndexViewModel viewModel = new()
         {
-            Foods = Foods.Take(9).ToList(),
+            Foods = Foods,
             FoodTypes = FoodTypes,
             Categories = categories
         };
@@ -40,11 +36,21 @@ public class HomeController(IFoodService FoodService,
         return View(Food);
     }
 
-    /*public IActionResult GetImages(int colorId)
+    public IActionResult Shop()
     {
-        var images = _colorService.GetImages(colorId);
-        return Ok(images);
-    }*/
+        var Foods = _foodService.GetAll();
+        var FoodTypes = _foodTypeService.GetAll();
+        var categories = _categoryService.GetAll();
+
+        IndexViewModel viewModel = new()
+        {
+            Foods = Foods,
+            FoodTypes = FoodTypes,
+            Categories = categories
+        };
+
+        return View(viewModel);
+    }
 
     public IActionResult Foods(int pageNumber = 1)
     {

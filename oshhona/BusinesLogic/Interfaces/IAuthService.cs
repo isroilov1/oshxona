@@ -1,7 +1,4 @@
-﻿using oshhona.Areas.Admin.Data.Entities;
-using oshhona.BusinesLogic.DTOs.UsesrDTOs;
-
-namespace oshhona.BusinesLogic.Interfaces;
+﻿namespace oshhona.BusinesLogic.Interfaces;
 
 public interface IAuthService
 {

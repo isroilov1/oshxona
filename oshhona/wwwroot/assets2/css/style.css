@@ -74,6 +74,15 @@
     color: var(--bs-white) !important;
 }
 
+.btn.border-danger {
+    transition: 0.5s;
+}
+
+.btn.border-danger:hover {
+    background: var(--bs-danger) !important;
+    color: var(--bs-white) !important;
+}
+
 /*** Topbar Start ***/
 .fixed-top {
     transition: 0.5s;
@@ -228,7 +237,7 @@
 @media (min-width: 992px) {
     .hero-header,
     .page-header {
-        margin-top: 152px !important;
+        margin-top: 6px !important;
     }
 }
 
