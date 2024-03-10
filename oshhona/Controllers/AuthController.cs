@@ -1,7 +1,4 @@
-﻿using oshhona.Areas.Admin.Data.Entities;
-using oshhona.BusinesLogic.DTOs.UsesrDTOs;
-
-namespace oshhona.Controllers;
+﻿namespace oshhona.Controllers;
 
 public class AuthController(IAuthService authService)
     : Controller

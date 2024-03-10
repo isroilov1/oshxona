@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                 <div class="navbar-nav mx-auto">
                     <a asp-controller="home" asp-action="index" class="nav-item nav-link active">Home</a>
-                    <a href="~/assets2/shop.html" class="nav-item nav-link">Shop</a>
+                    <a asp-controller="home" asp-action="shop" class="nav-item nav-link">Shop</a>
                     <a href="~/assets2/shop-detail.html" class="nav-item nav-link">Shop Detail</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -38,12 +38,14 @@
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a class="position-relative me-4 my-auto" data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <a class="position-relative me-4 my-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="bi bi-cart2 fa-2x"></i>
-                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                        <span id="cart-items-count" class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">0</span>
                     </a>
-                    <a href="#" class="my-auto">
-                        <i class="fas fa-user fa-2x"></i>
+                    
+                        @{
+                            await Html.RenderPartialAsync("Auth");
+                        }
                     </a>
                 </div>
             </div>
@@ -67,7 +69,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home/cars">Cars</a>
+                        <a class="nav-link active" aria-current="page" href="/home/foods">Cars</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">About</a>
@@ -78,7 +80,7 @@
                 </ul>
             </div>
 
-            <a data-bs-toggle="modal" data-bs-target="#cartModal" class="btn btn-outline-primary position-relative me-5">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary position-relative me-5">
                 <span style="font-size: 22px"><i class="bi bi-cart-fill"></i></span>
                 <span id="cart-items-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     0
@@ -97,12 +99,14 @@
         @RenderBody()
     </div>
 
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" style="border-radius: 50px">
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" style="">
         <!-- Cart Page Start -->
-            <div class="container-fluid py-5 mt-5" style="background-color: white; border-color: black; border: 10px">
-                <div class="container py-5" style="margin-top: 170px">
-                <div class="table-responsive">
+            <div class="modal-content" style="background-color: white">
+                <div class="container py-1 modal-body" id="datadiv">
+                    
+                    <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
@@ -125,7 +129,7 @@
                                     <p class="mb-0 mt-2">Big Banana</p>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
+                                    <p class="mb-0 mt-4">$29$</p>
                                 </td>
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
@@ -155,14 +159,14 @@
                             <tr>
                                 <th scope="row">
                                     <div class="d-flex align-items-center">
-                                        <img src="~/assets2/img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
+                                        <img src="~/assets2/img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                                     </div>
                                 </th>
                                 <td>
-                                    <p class="mb-0 mt-4">Potatoes</p>
+                                    <p class="mb-0 mt-2">Big Banana</p>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
+                                    <p class="mb-0 mt-4">$14</p>
                                 </td>
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
@@ -187,72 +191,141 @@
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
+
                             </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="~/assets2/img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Awesome Brocoli</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/assets2/img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 mt-2">Big Banana</p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">$2</p>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">2.99 $</p>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                            <i class="fa fa-times text-danger"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/assets2/img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 mt-2">Big Banana</p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">$170</p>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">2.99 $</p>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                            <i class="fa fa-times text-danger"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/assets2/img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 mt-2">Big Banana</p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">$1008</p>
+                                    </td>
+                                    <td>
+                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 mt-4">2$</p>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                            <i class="fa fa-times text-danger"></i>
+                                        </button>
+                                    </td>
+
+                                </tr>
                         </tbody>
                     </table>
+                    </div>
                 </div>
-                <div class="mt-5">
-                    <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
-                </div>
-                <div class="row g-1 justify-content-center">
-                    <div class="col-sm-8 col-md-7 col-lg-6 col-xl-12">
-                        <div class="bg-light rounded">
-                            <div class="p-4">
-                                <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                                <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="mb-0 me-4">Subtotal:</h5>
-                                    <p class="mb-0">$96.00</p>
+                <div class="footer">
+                    <hr/>
+                    <div class="mt-1" style="height: 50px">
+                        <input type="text" class="border-0 border-bottom rounded me-3 py-2 mb-2 ms-4" placeholder="Coupon Code">
+                        <button class="btn border-secondary rounded-pill px-3 py-2 text-primary" type="button">Apply Coupon</button>
+                    </div>
+                    <div class="row g-1 justify-content-center">
+                        <div class="col-sm-8 col-md-7 col-lg-6 col-xl-12">
+                            <div class="bg-light rounded">
+                                <div class="py-2 mb-1 border-top border-bottom d-flex justify-content-center">
+                                    <h5 class="mb-0 ps-4 me-4">Total:</h5>
+                                    <p class="mb-0 pe-4">$99.00</p>
                                 </div>
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="mb-0 me-4">Shipping</h5>
-                                    <div class="">
-                                        <p class="mb-0">Flat rate: $3.00</p>
-                                    </div>
+                                <div class="div2 d-flex justify-content-center mb-3">
+                                    <button type="button" class="btn border-danger rounded-pill text-danger text-uppercase me-2" data-bs-dismiss="modal">Close</button>
+                                    <button class="btn border-secondary rounded-pill px-3 py-2 text-primary text-uppercase" type="button">Buy</button>
                                 </div>
-                                <p class="mb-0 text-end">Shipping to Ukraine.</p>
                             </div>
-                            <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                <p class="mb-0 pe-4">$99.00</p>
-                            </div>
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                         </div>
                     </div>
                 </div>
@@ -263,7 +336,7 @@
 
 
 
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @* <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -289,7 +362,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -376,7 +449,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="d-flex justify-content-between counter plus-minus">
-                                                    <button class="btn btn-warning" onclick="minus(${cartItems[i].car.id})"> - </button>
+                                            <button class="btn btn-warning" onclick="minus(${cartItems[i].car.id})"> - </button>
                                             <input style="width:50px; text-align:center;" id="id${cartItems[i].car.id}" disabled readonly type="text" class="count mx-2" value="${cartItems[i].count}"/>
                                             <button class="btn btn-primary" onclick="plus(${cartItems[i].car.id})"> + </button>
                                         </div>
@@ -385,6 +458,93 @@
                                 </div>
                                 <hr>
                                 </div>
+
+
+
+                             <div class="table-responsive" id="div${cartItems[i].car.id}">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Products</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <div class="d-flex align-items-center">
+                                                    <input type="hidden" class="itemId" value="${cartItems[i].car.id}" />
+                                                                <img src="${imageUrl}" asp-append-version="true" class="img-fluid me-5 rounded-circle cart-item-img" style="width: 80px; height: 80px;" alt="">
+                                                </div>
+                                            </th>
+                                            <td>
+                                                <p class="mb-0 mt-2">${cartItems[i].car.name}</p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 mt-4"><span class="price">${cartItems[i].car.price}</span> $</p>
+                                            </td>
+                                            <td>
+                                                <div class="input-group quantity mt-4  counter plus-minus" style="width: 100px;">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border"  onclick="minus(${cartItems[i].car.id})">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" class="count form-control form-control-sm text-center border-0"  id="id${cartItems[i].car.id}" disabled readonly type="text" value="${cartItems[i].count}">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border"  onclick="plus(${cartItems[i].car.id})">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 mt-4">2.99 $</p>
+                                            </td>
+                                            <td>
+                                                <button onclick="removeFromCart(${cartItems[i].car.id})" class="remove btn btn-md rounded-circle bg-light border mt-4">
+                                                    <i class="fa fa-times text-danger"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-5">
+                                <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
+                                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                            </div>
+                            <div class="row g-1 justify-content-center">
+                                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-12">
+                                    <div class="bg-light rounded">
+                                        <div class="p-4">
+                                            <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <h5 class="mb-0 me-4">Subtotal:</h5>
+                                                <p class="mb-0">$96.00</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="mb-0 me-4">Shipping</h5>
+                                                <div class="">
+                                                    <p class="mb-0">Flat rate: $3.00</p>
+                                                </div>
+                                            </div>
+                                            <p class="mb-0 text-end">Shipping to Ukraine.</p>
+                                        </div>
+                                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                                            <h5 class="mb-0 ps-4 me-4">Total</h5>
+                                            <p class="mb-0 pe-4">$99.00</p>
+                                        </div>
+                                        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             `;
 
                 var div = document.createElement("div");

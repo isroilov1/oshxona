@@ -13,24 +13,28 @@
 
 @if (!authService.IsLoggedIn())
 {
-    <div class="d-flex justify-content-between" style="width: 200px">
-        <a asp-controller="auth" asp-action="login" class="auth-link btn btn-outline-success">Log in</a>
-        <a asp-controller="auth" asp-action="register" class="auth-link btn btn-outline-success">Register</a>
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle my-auto" data-bs-toggle="dropdown">
+            <i class="fas fa-user fa-2x"></i>
+            <span class="d-none d-lg-inline-flex">Profile</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+            <a asp-controller="auth" asp-action="login" class="dropdown-item">Login</a>
+            <a asp-controller="auth" asp-action="register" class="dropdown-item">Register</a>
+        </div>
     </div>
 }
 else
 {
-    <div class="dropdown me-3">
-        <button class="btn btn-secondary dropdown-toggle" style="height: 50px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="d-flex justify-content-between" style="align-items: center">
-                <span style="font-size: 25px; color: white"><i class="bi bi-person-circle"></i></span>
-                <span class="ms-2">@authService.GetFullName(Role.User)</span>
-            </div>
-        </button>
-        <div class="dropdown-menu px-2">
-            <div class="d-flex justify-content-start">
-                <a asp-controller="auth" asp-action="logout" class="auth-link btn btn-outline-danger">Log out</a>
-            </div>
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle my-auto" data-bs-toggle="dropdown">
+            <i class="fas fa-user fa-2x"></i>
+            <span class="d-none d-lg-inline-flex">@authService.GetFullName(Role.User)</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+            <a href="#" class="dropdown-item">My Profile</a>
+            <a href="#" class="dropdown-item">Settings</a>
+            <a asp-controller="auth" asp-action="logout" class="dropdown-item">Log Out</a>
         </div>
     </div>
 }
