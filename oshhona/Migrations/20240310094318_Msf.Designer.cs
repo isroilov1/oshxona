@@ -12,8 +12,8 @@ using oshhona.Areas.Admin.Data;
 namespace oshhona.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240307065337_Wsfswwvsdfsfadq")]
-    partial class Wsfswwvsdfsfadq
+    [Migration("20240310094318_Msf")]
+    partial class Msf
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

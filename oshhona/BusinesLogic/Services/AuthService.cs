@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authentication;
-using oshhona.Areas.Admin.Data.Entities;
-using oshhona.Areas.Admin.Data.Interfaces;
-using oshhona.BusinesLogic.DTOs.UsesrDTOs;
 using System.Security.Claims;
 
 namespace oshhona.BusinesLogic.Services;
@@ -83,6 +80,20 @@ public class AuthService(IUnitOfWork unitOfWork,
             {
                 IsSuccess = false,
                 ErrorMessage = "LoginDto is null"
+            };
+        }
+        if (loginDto.Password == null)
+        {
+            return new()
+            {
+                IsSuccess = false
+            };
+        }
+        if (loginDto.TelNomer == null)
+        {
+            return new()
+            {
+                IsSuccess = false
             };
         }
 

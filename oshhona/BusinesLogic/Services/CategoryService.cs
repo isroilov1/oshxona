@@ -1,7 +1,4 @@
-﻿using oshhona.Areas.Admin.Data.Entities;
-using oshhona.Areas.Admin.Data.Interfaces;
-
-namespace oshhona.BusinesLogic.Services;
+﻿namespace oshhona.BusinesLogic.Services;
 
 public class CategoryService(IUnitOfWork unitOfWork,
                              IFileService fileService)
@@ -60,7 +57,8 @@ public class CategoryService(IUnitOfWork unitOfWork,
         {
             Id = c.Id,
             Name = c.Name,
-            ImagePath = c.ImageUrl
+            ImagePath = c.ImageUrl,
+            FoodTypes = c.FoodTypes
         }).ToList();
 
         return list;
@@ -79,7 +77,8 @@ public class CategoryService(IUnitOfWork unitOfWork,
         {
             Id = category.Id,
             Name = category.Name,
-            ImagePath = category.ImageUrl
+            ImagePath = category.ImageUrl,
+            FoodTypes = category.FoodTypes
         };
 
         return dto;
