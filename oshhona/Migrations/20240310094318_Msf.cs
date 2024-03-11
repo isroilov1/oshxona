@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace oshhona.Migrations
 {
     /// <inheritdoc />
-    public partial class Wsfswwvsdfsfadq : Migration
+    public partial class Msf : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
