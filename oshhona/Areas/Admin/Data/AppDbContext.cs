@@ -1,12 +1,8 @@
-﻿using oshhona.Areas.Admin.Data.Entities;
-
+﻿
 namespace oshhona.Areas.Admin.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-    : base(options) { }
-
     public DbSet<Category> Categories { get; set; }
     public DbSet<Foods> Foods { get; set; }
     public DbSet<FoodTypes> FoodType { get; set; }
